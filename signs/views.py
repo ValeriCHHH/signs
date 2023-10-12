@@ -7,3 +7,6 @@ def home (request):
 
 def sign (request):
     return render(request, 'signs/signs.html')
+
+def doc (request):
+    return render(request, 'signs/documents.html')
