@@ -1,6 +1,6 @@
 import fsb795
 
-tk_c = fsb795.Certificate('/home/tomas/Рабочий стол/Averkina_pers/kazna_2024/Аверкина Олеся Александровна (1).cer')
+tk_c = fsb795.Certificate('/home/maverick/Рабочий стол/Nalivkina_Kazna_2024/Nalivkina_2024.cer')
 valid = tk_c.validityCert()
 print ('действительна до: ' + str(valid['not_after']))
 
