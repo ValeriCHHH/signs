@@ -2,5 +2,6 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('', views.signs),
+    path('', views.home),
+    path('signs/', views.sign),
 ]
