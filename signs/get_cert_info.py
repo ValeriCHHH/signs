@@ -1,7 +1,13 @@
 import fsb795
 from zipfile import ZipFile
+import os
+import re
 
-#cert = ()
+
+patern_cer = "[- ]*\w*[ -.\s]?\w*[ -.\s]?\w*.cer"
+patern_zip = "[- ]*\w*[ -.\s]?\w*[ -.\s]?\w*.zip"
+
+
 def get_cert_info (cert):
     tk_c = fsb795.Certificate(cert)
     valid = tk_c.validityCert()
@@ -17,4 +23,4 @@ def get_cert_info (cert):
     end_date = valid['not_after']
     print (f'{sub_name} \n{dst_name} \n{end_date}')
 
-get_cert_info ('/home/maverick/Рабочий стол/Averkina_pers/Аверкина Олеся Александровна.cer')
+get_cert_info ('/home/maverick/Рабочий стол/Averkina_pers/kazna_2024/Аверкина Олеся Александровна (1).cer')
