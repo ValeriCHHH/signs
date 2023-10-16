@@ -1,11 +1,33 @@
 import fsb795
-from zipfile import ZipFile
+import zipfile
 import os
 import re
+import pathlib
 
 
-patern_cer = "[- ]*\w*[ -.\s]?\w*[ -.\s]?\w*.cer"
-patern_zip = "[- ]*\w*[ -.\s]?\w*[ -.\s]?\w*.zip"
+
+pattern_cer = r"\w+[- ]*\w*[ -.\s]?\w*[ -.\s]?\w*[ -.\s]?\w*[ -.\s]?\w*[ -.\s]?\w*[ -.\s]?\w*.cer"
+pattern_zip = r"\w+[- ]*\w*[ -.\s]?\w*[ -.\s]?\w*.zip"
+
+print (os.getcwd())
+sequence_zip = str(os.listdir('./media'))
+
+result_search = re.search(pattern_zip, sequence_zip).group()
+
+path_zip = f'./media/{result_search}'
+
+zipfile.is_zipfile(str(path_zip))
+z = zipfile.ZipFile(path_zip, 'r')
+sequence_cer = str(z.namelist())
+#print(sequence_cer)
+
+result_search_cert = re.search(pattern_cer, sequence_cer).group()
+
+
+f = open(path_zip,'rb')
+zfile = zipfile.ZipFile(f)
+for zc in zfile.namelist():
+    zfile.extract(result_search_cert,'./media', pwd = b'12345')
 
 
 def get_cert_info (cert):
@@ -23,4 +45,7 @@ def get_cert_info (cert):
     end_date = valid['not_after']
     print (f'{sub_name} \n{dst_name} \n{end_date}')
 
-get_cert_info ('/home/maverick/Рабочий стол/Averkina_pers/kazna_2024/Аверкина Олеся Александровна (1).cer')
+get_cert_info ('/home/tomas/Рабочий стол/Averkina_pers/Аверкина Олеся Александровна.cer')
+print (sequence_zip)
+print (path_zip)
+print (result_search_cert)
